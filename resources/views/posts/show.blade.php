@@ -6,6 +6,7 @@
                 {{ session('notice') }}
             </div>
         @endif
+        <x-validation-errors :errors="$errors" />
 
         <article class="mb-2">
             <h2 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-1 text-3xl md:text-4xl break-words">
@@ -20,18 +21,18 @@
             <p class="text-gray-700 text-base">{!! nl2br(e($post->body)) !!}</p>
         </article>
         <div class="flex flex-row text-center my-4">
-            @can('update', $post)
+            {{-- @can('update', $post)--}}
                 <a href="{{ route('posts.edit', $post) }}"
                     class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">編集</a>
-            @endcan
-            @can('delete', $post)
+            {{-- @endcan--}}
+            {{-- @can('delete', $post) --}}
                 <form action="{{ route('posts.destroy', $post) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <input type="submit" value="削除" onclick="if(!confirm('削除しますか？')){return false};"
                         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20">
                 </form>
-            @endcan
+            {{-- @endcan--}}
         </div>
     </div>
 </x-app-layout>
